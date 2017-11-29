@@ -1,43 +1,12 @@
 apiVersion: v1
 entries:
-  alpine:
-  - created: 2016-11-18T15:05:51.078570269-07:00
-    description: Deploy a basic Alpine Linux pod
-    digest: f44f733d69008e86c3989d3b094a5e6151d168921a09eda61c0897472e2f0399
-    home: https://k8s.io/helm
-    name: alpine
-    sources:
-    - https://github.com/kubernetes/helm
-    urls:
-    - alpine-0.3.0.tgz
-    version: 0.3.0
-  - created: 2016-11-18T15:05:51.078096239-07:00
-    description: Deploy a basic Alpine Linux pod
-    digest: 99c76e403d752c84ead610644d4b1c2f2b453a74b921f422b9dcb8a7c8b559cd
-    home: https://k8s.io/helm
-    name: alpine
-    sources:
-    - https://github.com/kubernetes/helm
-    urls:
-    - alpine-0.2.0.tgz
-    version: 0.2.0
-  - created: 2016-11-18T15:05:51.077842565-07:00
-    description: Deploy a basic Alpine Linux pod
-    digest: 515c58e5f79d8b2913a10cb400ebb6fa9c77fe813287afbacf1a0b897cd78727
-    home: https://k8s.io/helm
-    name: alpine
-    sources:
-    - https://github.com/kubernetes/helm
-    urls:
-    - alpine-0.1.0.tgz
-    version: 0.1.0
-  mink:
+  rehive-service:
   - apiVersion: v1
-    created: 2016-11-18T15:05:51.079623125-07:00
-    description: A Helm chart for Kubernetes
-    digest: 28e300f4bd90e49efc8c53cb631ea25f817e1e35da4f8131298bf79a06b6ec21
-    name: mink
+    created: 2017-11-29T16:40:52.045998515+02:00
+    description: A Helm chart for Kubernetes for Rehive Services
+    digest: 254e8afa0e9f52e4bdbc6f83f827e6ecf8337d5f0666eaf9df2f850ffba816fc
+    name: rehive-service
     urls:
-    - mink-0.1.0.tgz
+    - https://rehive.github.com/charts/rehive-service-0.1.0.tgz
     version: 0.1.0
-generated: 2016-11-18T15:05:51.077257234-07:00
+generated: 2017-11-29T16:40:52.043036553+02:00
