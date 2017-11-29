@@ -16,5 +16,5 @@ $ git commit -av
 $ git push origin master
 ```
 
-To add this repository, run `helm repo add tscharts
+To add this repository, run `helm repo add rehive
 https://rehive.github.com/charts`
