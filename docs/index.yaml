@@ -2,7 +2,15 @@ apiVersion: v1
 entries:
   rehive-service:
   - apiVersion: v1
-    created: 2017-12-03T23:13:38.587314514+02:00
+    created: 2017-12-03T23:48:34.773635975+02:00
+    description: A Helm chart for Kubernetes for Rehive Services
+    digest: 392738b9c2f830937ab637bfd953ff2d2b96ef0d3faac38aac1667ef7c5f366a
+    name: rehive-service
+    urls:
+    - https://rehive.github.io/charts/rehive-service-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v1
+    created: 2017-12-03T23:48:34.772928276+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 43617732e3c0ac84c8b1540243991426ab85bf9fdf2c10ec0549d78e57aafb4f
     name: rehive-service
@@ -10,11 +18,11 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: 2017-12-03T23:13:38.586527213+02:00
+    created: 2017-12-03T23:48:34.772281835+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 254e8afa0e9f52e4bdbc6f83f827e6ecf8337d5f0666eaf9df2f850ffba816fc
     name: rehive-service
     urls:
     - https://rehive.github.io/charts/rehive-service-0.1.0.tgz
     version: 0.1.0
-generated: 2017-12-03T23:13:38.582609087+02:00
+generated: 2017-12-03T23:48:34.770189033+02:00
