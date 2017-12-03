@@ -42,5 +42,5 @@ spec:
           initialDelaySeconds: 10
           timeoutSeconds: 2
           periodSeconds: 10
-          resources:
+        resources:
 {{ toYaml .Values.deployment.resources | indent 10 }}
