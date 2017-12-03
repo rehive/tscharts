@@ -7,6 +7,6 @@ entries:
     digest: 254e8afa0e9f52e4bdbc6f83f827e6ecf8337d5f0666eaf9df2f850ffba816fc
     name: rehive-service
     urls:
-    - https://rehive.github.com/charts/rehive-service-0.1.0.tgz
+    - https://rehive.github.io/charts/rehive-service-0.1.0.tgz
     version: 0.1.0
 generated: 2017-11-29T16:40:52.043036553+02:00
