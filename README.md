@@ -10,11 +10,11 @@ GitHub pages is set up to point to the `docs` folder. Publishing charts:
 $ helm create mychart
 $ helm package mychart
 $ mv mychart-0.1.0.tgz docs
-$ helm repo index docs --url https://rehive.github.com/charts
+$ helm repo index docs --url https://rehive.github.io/charts
 $ git add -i
 $ git commit -av
 $ git push origin master
 ```
 
 To add this repository, run `helm repo add rehive
-https://rehive.github.com/charts`
+https://rehive.github.io/charts`
