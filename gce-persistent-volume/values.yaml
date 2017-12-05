@@ -1,0 +1,7 @@
+# Default values for rehive-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+volumeName: example-service-staging-database-volume
+volumeSize: 100Gi
+gcePersistentDiskName: example-database

@@ -32,10 +32,6 @@ ingress:
       secretName: stellar-service-tls
   hosts:
     - example.services.rehive.io
-database:
-  volumeName: example-service-staging-database-volume
-  volumeSize: 100Gi
-  gcePersistentDiskName: example-database
 workersEnabled: true
 workers:
   - name: worker-receive
