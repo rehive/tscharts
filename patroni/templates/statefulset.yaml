@@ -112,6 +112,8 @@ spec:
               value: {{ .Values.cloneWithWale.cloneWaleEnvDir | quote }}
             - name: CLONE_WAL_GCS_BUCKET
               value: {{ .Values.cloneWithWale.cloneWalGcsBucket | quote }}
+            - name: CLONE_WAL_GSC_BUCKET # Mistake in spilo
+              value: {{ .Values.cloneWithWale.cloneWalGcsBucket | quote }}
             - name: CLONE_SCOPE
               value: {{ .Values.cloneWithWale.cloneScope | quote }}
             - name: CLONE_METHOD
@@ -139,6 +141,12 @@ spec:
               mountPath: /etc/credentials
               readOnly: true
         {{ end }}
+      volumes:
+      {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
+        - name: {{ .Values.walE.kubernetesSecret }}
+          secret:
+            secretName: {{ .Values.walE.kubernetesSecret }}
+      {{ end }}
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
@@ -168,11 +176,6 @@ spec:
                     app: "{{ template "patroni.name" . }}"
                     release: "{{ .Release.Name }}"
     {{- end }}
-      {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
-        - name: {{ .Values.walE.kubernetesSecret }}
-          secret:
-            secretName: {{ .Values.walE.kubernetesSecret }}
-      {{ end }}
 {{- if .Values.persistentVolume.enabled }}
   volumeClaimTemplates:
     - metadata:

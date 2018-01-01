@@ -40,12 +40,12 @@ postgresParameters:
   bin_dir: /usr/lib/postgresql/9.6/bin
 
 walE:
-  enable: false
+  enable: true
   scheduleCronJob: 00 01 * * *
   retainBackups: 2
   s3Bucket:
-  gcsBucket:
-  kubernetesSecret: rehive-wale-gcloud
+  gcsBucket: rehire-core-staging-wale
+  kubernetesSecret: gcloud-wale
   backupThresholdMegabytes: 1024
   backupThresholdPercentage: 30
 
