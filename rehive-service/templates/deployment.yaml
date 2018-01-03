@@ -28,6 +28,18 @@ spec:
         envFrom:
           - secretRef:
               name: {{ template "fullname" . }}
+        {{- if .Values.postgres.enable }}
+        env:
+          - name: POSTGRES_HOST
+            value: {{ .Values.postgres.host}}
+          - name: POSTGRES_USER
+            value: {{ .Values.postgres.user }}
+          - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.postgres.secret.name}}
+                  key: {{ .Values.postgres.secret.key}}
+        {{- end }}
         livenessProbe:
           httpGet:
             path: /readiness
@@ -51,6 +63,8 @@ metadata:
   name: "{{ template "fullname" . }}-management"
   labels:
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+    helm/revision: "{{ .Release.Revision }}" # Hack to force restart on upgrade
 spec:
   containers:
   - name: management

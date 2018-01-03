@@ -32,6 +32,16 @@ ingress:
       secretName: stellar-service-tls
   hosts:
     - example.services.rehive.io
+postgres:
+  enabled: false
+  host: patroni-example-patroni.example-namespace.svc.cluster.local
+  secret:
+    name: patroni-example-patroni
+    key: password-admin
+rabbitmq:
+  secret:
+    name: rabbitmq-example-rabbitmq-ha
+    key: rabbitmq-password
 workersEnabled: true
 workers:
   - name: worker-receive
