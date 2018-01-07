@@ -1,0 +1,15 @@
+# Default values for rehive-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+project: gcloud-example
+disk: my-disk
+zone: europe-west1-c
+interval: 10
+resources:
+  requests:
+    memory: 256Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 100m

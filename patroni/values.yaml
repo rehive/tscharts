@@ -45,7 +45,6 @@ walE:
   retainBackups: 2
   s3Bucket:
   gcsBucket: rehire-core-staging-wale
-  kubernetesSecret: gcloud-wale
   backupThresholdMegabytes: 1024
   backupThresholdPercentage: 30
 

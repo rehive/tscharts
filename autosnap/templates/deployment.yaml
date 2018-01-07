@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: autosnap-backup
+  labels:
+    name: backup
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: backup
+    spec:
+      containers:
+        - name: backup
+          image: rehive/autosnap
+          env:
+            - name: PROJECT
+              value: {{ .Values.project }}
+            - name: DISK
+              value: {{ .Values.disk }}
+            - name: ZONE
+              value: {{ .Values.zone }}
+            - name: INTERVAL_MINUTES
+              value: "{{ .Values.interval }}"
+          command: ['/bin/bash','-c','python app.py']
+          resources:
+{{ toYaml .Values.resources | indent 12 }}
