@@ -28,10 +28,12 @@ spec:
         envFrom:
           - secretRef:
               name: {{ template "fullname" . }}
-        {{- if .Values.postgres.enable }}
         env:
+        {{- if .Values.postgres.enable }}
           - name: POSTGRES_HOST
             value: {{ .Values.postgres.host}}
+          - name: POSTGRES_PORT
+            value: {{ .Values.postgres.port}}
           - name: POSTGRES_USER
             value: {{ .Values.postgres.user }}
           - name: POSTGRES_PASSWORD
@@ -39,6 +41,15 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.postgres.secret.name}}
                   key: {{ .Values.postgres.secret.key}}
+        {{- end }}
+        {{- if .Values.redis.enable }}
+          - name: REDIS_HOST
+            value: {{ .Values.redis.host}}
+          - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.redis.secret.name}}
+                  key: {{ .Values.redis.secret.key}}
         {{- end }}
         livenessProbe:
           httpGet:

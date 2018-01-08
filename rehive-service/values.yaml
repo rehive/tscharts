@@ -35,14 +35,25 @@ ingress:
 postgres:
   enabled: false
   host: patroni-example-patroni.example-namespace.svc.cluster.local
+  port: 5432
   secret:
     name: patroni-example-patroni
     key: password-admin
+redis:
+  enabled: false
+  host: redis-example-redis.example-namespace.svc.cluster.local
+  port: 6379
+  secret:
+    name: redis-example-redis
+    key: rabbitmq-password
 rabbitmq:
+  enabled: false
+  host: patroni-example-patroni.example-namespace.svc.cluster.local
+  port: 5672
   secret:
     name: rabbitmq-example-rabbitmq-ha
     key: rabbitmq-password
-workersEnabled: true
+workersEnabled: false
 workers:
   - name: worker-receive
     internalPort: 8000
