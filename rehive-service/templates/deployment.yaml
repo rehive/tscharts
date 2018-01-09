@@ -31,11 +31,11 @@ spec:
         env:
         {{- if .Values.postgres.enabled }}
           - name: POSTGRES_HOST
-            value: {{ .Values.postgres.host}}
+            value: "{{ .Values.postgres.host}}"
           - name: POSTGRES_PORT
-            value: {{ .Values.postgres.port}}
+            value: "{{ .Values.postgres.port}}"
           - name: POSTGRES_USER
-            value: {{ .Values.postgres.user }}
+            value: "{{ .Values.postgres.user }}"
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
@@ -44,7 +44,7 @@ spec:
         {{- end }}
         {{- if .Values.redis.enabled }}
           - name: REDIS_HOST
-            value: {{ .Values.redis.host}}
+            value: "{{ .Values.redis.host}}"
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:

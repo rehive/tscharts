@@ -35,6 +35,7 @@ ingress:
 postgres:
   enabled: false
   host: patroni-example-patroni.example-namespace.svc.cluster.local
+  user: admin
   port: 5432
   secret:
     name: patroni-example-patroni
