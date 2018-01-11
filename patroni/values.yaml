@@ -9,14 +9,14 @@ debug: false
 
 podAntiAffinity: soft
 
-nodeSelector:
-  cloud.google.com/gke-nodepool: postgres-pool
+nodeSelector: {}
+#  cloud.google.com/gke-nodepool: postgres-pool
 
-tolerations:
-  - key: "dedicated"
-    operator: "Equal"
-    value: "postgres"
-    effect: "NoSchedule"
+tolerations: {}
+#  - key: "dedicated"
+#    operator: "Equal"
+#    value: "postgres"
+#    effect: "NoSchedule"
 
 
 # Resource requests and limits per pod
