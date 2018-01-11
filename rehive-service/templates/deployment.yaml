@@ -31,38 +31,38 @@ spec:
         env:
         {{- if .Values.postgres.enabled }}
           - name: POSTGRES_HOST
-            value: {{ .Values.postgres.host}}
+            value: "{{ .Values.postgres.host}}"
           - name: POSTGRES_PORT
-            value: {{ .Values.postgres.port}}
+            value: "{{ .Values.postgres.port}}"
           - name: POSTGRES_USER
-            value: {{ .Values.postgres.user }}
+            value: "{{ .Values.postgres.user }}"
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.postgres.secret.name}}
-                key: {{ .Values.postgres.secret.key}}
+                name: "{{ .Values.postgres.secret.name}}"
+                key: "{{ .Values.postgres.secret.key}}"
         {{- end }}
         {{- if .Values.redis.enabled }}
           - name: REDIS_HOST
-            value: {{ .Values.redis.host}}
+            value: "{{ .Values.redis.host}}"
           - name: REDIS_PORT
-            value: {{ .Values.redis.port}}
+            value: "{{ .Values.redis.port}}"
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.redis.secret.name}}
-                key: {{ .Values.redis.secret.key}}
+                name: "{{ .Values.redis.secret.name}}"
+                key: "{{ .Values.redis.secret.key}}"
         {{- end }}
         {{- if .Values.rabbitmq.enabled }}
           - name: RABBITMQ_HOST
-            value: {{ .Values.rabbitmq.host}}
+            value: "{{ .Values.rabbitmq.host}}"
           - name: RABBITMQ_PORT
-            value: {{ .Values.rabbitmq.port}}
+            value: "{{ .Values.rabbitmq.port}}"
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: {{ .Values.rabbitmq.secret.name}}
-                key: {{ .Values.rabbitmq.secret.key}}
+                name: "{{ .Values.rabbitmq.secret.name}}"
+                key: "{{ .Values.rabbitmq.secret.key}}"
         {{- end }}
         livenessProbe:
           httpGet:
