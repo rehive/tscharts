@@ -45,8 +45,8 @@ spec:
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: "{{ $postgres.secret.name}}"
-                key: "{{ $postgres.secret.key}}"
+                 name: "{{ $postgres.secret.name}}"
+                 key: "{{ $postgres.secret.key}}"
         {{- end }}
         {{- if $redis.enabled }}
           - name: REDIS_HOST
@@ -56,8 +56,8 @@ spec:
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
-               name: "{{ $redis.secret.name}}"
-               key: "{{ $redis.secret.key}}"
+                name: "{{ $redis.secret.name}}"
+                key: "{{ $redis.secret.key}}"
         {{- end }}
         {{- if $rabbitmq.enabled }}
           - name: RABBITMQ_HOST
@@ -67,11 +67,11 @@ spec:
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
-               name: "{{ $rabbitmq.secret.name}}"
-               key: "{{ $rabbitmq.secret.key}}"
+                name: "{{ $rabbitmq.secret.name}}"
+                key: "{{ $rabbitmq.secret.key}}"
         {{- end }}
         envFrom:
-         - secretRef:
+          - secretRef:
             name: {{ $serviceName }}
         resources:
 {{ toYaml $worker.resources | indent 10 }}
