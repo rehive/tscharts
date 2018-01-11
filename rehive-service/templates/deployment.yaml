@@ -37,10 +37,10 @@ spec:
           - name: POSTGRES_USER
             value: {{ .Values.postgres.user }}
           - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.postgres.secret.name}}
-                  key: {{ .Values.postgres.secret.key}}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.postgres.secret.name}}
+                key: {{ .Values.postgres.secret.key}}
         {{- end }}
         {{- if .Values.redis.enabled }}
           - name: REDIS_HOST
@@ -48,10 +48,10 @@ spec:
           - name: REDIS_PORT
             value: {{ .Values.redis.port}}
           - name: REDIS_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.redis.secret.name}}
-                  key: {{ .Values.redis.secret.key}}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.redis.secret.name}}
+                key: {{ .Values.redis.secret.key}}
         {{- end }}
         {{- if .Values.rabbitmq.enabled }}
           - name: RABBITMQ_HOST
@@ -59,10 +59,10 @@ spec:
           - name: RABBITMQ_PORT
             value: {{ .Values.rabbitmq.port}}
           - name: RABBITMQ_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.rabbitmq.secret.name}}
-                  key: {{ .Values.rabbitmq.secret.key}}
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.rabbitmq.secret.name}}
+                key: {{ .Values.rabbitmq.secret.key}}
         {{- end }}
         livenessProbe:
           httpGet:
@@ -100,8 +100,8 @@ spec:
           name: {{ template "fullname" . }}
     resources:
       requests:
-        memory: 512Mi
-        cpu: 200m
+        memory: 1G
+        cpu: 266m
       limits:
-        memory: 512Mi
-        cpu: 200m
+        memory: 1G
+        cpu: 266m
