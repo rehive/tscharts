@@ -1,5 +1,8 @@
 {{- $replicaCount := .Values.deployment.replicaCount -}}
 {{- $repository := .Values.image.repository -}}
+{{- $postgres := .Values.postgres -}}
+{{- $rabbitmq := .Values.rabbitmq -}}
+{{- $redis := .Values.redis -}}
 {{- $tag := .Values.image.tag -}}
 {{- $serviceName := include "fullname" . -}}
 {{- $revision := .Release.Revision -}}
@@ -32,40 +35,40 @@ spec:
         - containerPort: {{ $worker.internalPort }}
         command: ['/bin/sh','-c', '{{ $worker.command }}']
         env:
-        {{- if .Values.postgres.enabled }}
+        {{- if $postgres.enabled }}
           - name: POSTGRES_HOST
-            value: "{{ .Values.postgres.host}}"
+            value: "{{ $postgres.host}}"
           - name: POSTGRES_PORT
-            value: "{{ .Values.postgres.port}}"
+            value: "{{ $postgres.port}}"
           - name: POSTGRES_USER
-            value: "{{ .Values.postgres.user }}"
+            value: "{{ $postgres.user }}"
           - name: POSTGRES_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.postgres.secret.name}}"
-                key: "{{ .Values.postgres.secret.key}}"
+                name: "{{ $postgres.secret.name}}"
+                key: "{{ $postgres.secret.key}}"
         {{- end }}
-        {{- if .Values.redis.enabled }}
+        {{- if $redis.enabled }}
           - name: REDIS_HOST
-            value: "{{ .Values.redis.host}}"
+            value: "{{ $redis.host}}"
           - name: REDIS_PORT
-            value: "{{ .Values.redis.port}}"
+            value: "{{ $redis.port}}"
           - name: REDIS_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.redis.secret.name}}"
-                key: "{{ .Values.redis.secret.key}}"
+                name: "{{ $redis.secret.name}}"
+                key: "{{ $redis.secret.key}}"
         {{- end }}
-        {{- if .Values.rabbitmq.enabled }}
+        {{- if $rabbitmq.enabled }}
           - name: RABBITMQ_HOST
-            value: "{{ .Values.rabbitmq.host}}"
+            value: "{{ $rabbitmq.host}}"
           - name: RABBITMQ_PORT
-            value: "{{ .Values.rabbitmq.port}}"
+            value: "{{ $rabbitmq.port}}"
           - name: RABBITMQ_PASSWORD
             valueFrom:
               secretKeyRef:
-                name: "{{ .Values.rabbitmq.secret.name}}"
-                key: "{{ .Values.rabbitmq.secret.key}}"
+                name: "{{ $rabbitmq.secret.name}}"
+                key: "{{ $rabbitmq.secret.key}}"
         {{- end }}
         envFrom:
           - secretRef:
