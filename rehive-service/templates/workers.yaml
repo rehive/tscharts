@@ -72,7 +72,7 @@ spec:
         {{- end }}
         envFrom:
           - secretRef:
-            name: {{ $serviceName }}
+              name: {{ $serviceName }}
         resources:
 {{ toYaml $worker.resources | indent 10 }}
 ---
