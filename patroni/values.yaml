@@ -20,13 +20,13 @@ tolerations:
 
 
 # Resource requests and limits per pod
-resources:
-  limits:
-    cpu: 2
-    memory: 7.5Gi
-  requests:
-    cpu: 2
-    memory: 7.5Gi
+resources: {}
+#  limits:
+#     cpu: 2
+#     memory: 7.5Gi
+#  requests:
+#     cpu: 2
+#     memory: 7.5Gi
 
 credentials:
   # Leave blank to autogenerate
