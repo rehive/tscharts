@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   autosnap:
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.513962909+02:00
+    created: 2018-01-11T20:17:11.379080946+02:00
     description: A Helm chart for deploying autonsnap, periodic google cloud disk
       snapshots
     digest: 71f084eec1fdb47ce802decdb8d807cd5116afd718c63a5d57e571549a69b279
@@ -12,7 +12,7 @@ entries:
     version: 0.0.1
   gce-persistent-volume:
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.514894854+02:00
+    created: 2018-01-11T20:17:11.379904867+02:00
     description: A Helm chart for creating a persistent volume an volume claim for
       a GCE disk
     digest: 8ec4f38a731e356f34c47f36aadaa04186ae798427d3bdd4e9180ec4fdeb2bcc
@@ -22,7 +22,7 @@ entries:
     version: 0.0.1
   patroni:
   - appVersion: 1.3-p4
-    created: 2018-01-11T18:06:59.519914851+02:00
+    created: 2018-01-11T20:17:11.386736767+02:00
     description: 'Highly available elephant herd: HA PostgreSQL cluster.'
     digest: 70e22a88b9d8f16e2cbbf0ad2ec1d34349db6204797c36a60e2c82188d1be0bb
     home: https://github.com/zalando/patroni
@@ -41,7 +41,7 @@ entries:
     - https://rehive.github.io/charts/patroni-0.7.4.tgz
     version: 0.7.4
   - appVersion: 1.3-p4
-    created: 2018-01-11T18:06:59.518855366+02:00
+    created: 2018-01-11T20:17:11.384974655+02:00
     description: 'Highly available elephant herd: HA PostgreSQL cluster.'
     digest: c00cd83e7759ad482c8573cd83e4a18b88660617c32d622030d6c0c30438cfd0
     home: https://github.com/zalando/patroni
@@ -60,7 +60,7 @@ entries:
     - https://rehive.github.io/charts/patroni-0.7.3.tgz
     version: 0.7.3
   - appVersion: 1.3-p4
-    created: 2018-01-11T18:06:59.517752586+02:00
+    created: 2018-01-11T20:17:11.383382235+02:00
     description: 'Highly available elephant herd: HA PostgreSQL cluster.'
     digest: 9b94c7c8c6434b337f04e73b860418fb23a648b54223ed59267157a679bb02d3
     home: https://github.com/zalando/patroni
@@ -79,7 +79,7 @@ entries:
     - https://rehive.github.io/charts/patroni-0.7.2.tgz
     version: 0.7.2
   - appVersion: 1.3-p4
-    created: 2018-01-11T18:06:59.516581579+02:00
+    created: 2018-01-11T20:17:11.381717287+02:00
     description: 'Highly available elephant herd: HA PostgreSQL cluster.'
     digest: c6b1ffdb4ebfd69c33c5275244244213ea961869044de2b4fa30acc19b519c67
     home: https://github.com/zalando/patroni
@@ -98,7 +98,7 @@ entries:
     - https://rehive.github.io/charts/patroni-0.7.1.tgz
     version: 0.7.1
   - appVersion: 1.3-p4
-    created: 2018-01-11T18:06:59.521132183+02:00
+    created: 2018-01-11T20:17:11.388411999+02:00
     description: 'Highly available elephant herd: HA PostgreSQL cluster.'
     digest: 2fcf6c3b8b7e9bebb32d4ae205403bccf3d466bef94d2c67ec5835d6ad64eb52
     home: https://github.com/zalando/patroni
@@ -118,7 +118,15 @@ entries:
     version: "0.7"
   rehive-service:
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.523752109+02:00
+    created: 2018-01-11T20:17:11.395263642+02:00
+    description: A Helm chart for Kubernetes for Rehive Services
+    digest: 7301baee1a976de30c180ba55aedaf145f2c442f4be0bb29feb6ace3e254c445
+    name: rehive-service
+    urls:
+    - https://rehive.github.io/charts/rehive-service-0.1.11.tgz
+    version: 0.1.11
+  - apiVersion: v1
+    created: 2018-01-11T20:17:11.394804123+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: b47139663b02409019fddeb8c54efd3a043a0e47587c4e867d40b17122e024b6
     name: rehive-service
@@ -126,7 +134,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.10.tgz
     version: 0.1.10
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.535064387+02:00
+    created: 2018-01-11T20:17:11.4066409+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: d5ad01a0a52dbff425207357e77b9510d8b0a550ce6bd329088a297eaefec761
     name: rehive-service
@@ -134,7 +142,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.9.tgz
     version: 0.1.9
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.533639849+02:00
+    created: 2018-01-11T20:17:11.405437536+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: fa7b4d284026b4e0bb46fa4a506e27bf834c010a20812497a13259e59c3918a0
     name: rehive-service
@@ -142,7 +150,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.8.tgz
     version: 0.1.8
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.532156877+02:00
+    created: 2018-01-11T20:17:11.403075406+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 6e4e758e1a650ff2419f97f196d823d36876c0b1d68aeb70a2fd0185683205f7
     name: rehive-service
@@ -150,7 +158,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.7.tgz
     version: 0.1.7
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.530851658+02:00
+    created: 2018-01-11T20:17:11.401467326+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 00e57d864cd173cd0f5b25be5f4247d05eebcfb37e1af7bc09a8765afae59fd8
     name: rehive-service
@@ -158,7 +166,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.6.tgz
     version: 0.1.6
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.529829258+02:00
+    created: 2018-01-11T20:17:11.399821257+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 2819857043494062ffdc0d52f8433b4d33fe95caf806f15569f36ca87573ea9c
     name: rehive-service
@@ -166,7 +174,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.5.tgz
     version: 0.1.5
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.52830107+02:00
+    created: 2018-01-11T20:17:11.3981749+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 3ea21ef8296b0f7938a6bdb30020a6110a0ac5694f995f6814e62840144eb6b2
     name: rehive-service
@@ -174,7 +182,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.4.tgz
     version: 0.1.4
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.526714+02:00
+    created: 2018-01-11T20:17:11.397183378+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: f5cbd012495e3a45f7d1cda6d9bd0e6641b01cf8fabaa35882e0df4ba79087fd
     name: rehive-service
@@ -182,7 +190,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.3.tgz
     version: 0.1.3
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.52487694+02:00
+    created: 2018-01-11T20:17:11.39609222+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 392738b9c2f830937ab637bfd953ff2d2b96ef0d3faac38aac1667ef7c5f366a
     name: rehive-service
@@ -190,7 +198,7 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.2.tgz
     version: 0.1.2
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.522581543+02:00
+    created: 2018-01-11T20:17:11.390465103+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 43617732e3c0ac84c8b1540243991426ab85bf9fdf2c10ec0549d78e57aafb4f
     name: rehive-service
@@ -198,11 +206,11 @@ entries:
     - https://rehive.github.io/charts/rehive-service-0.1.1.tgz
     version: 0.1.1
   - apiVersion: v1
-    created: 2018-01-11T18:06:59.521840167+02:00
+    created: 2018-01-11T20:17:11.389451424+02:00
     description: A Helm chart for Kubernetes for Rehive Services
     digest: 254e8afa0e9f52e4bdbc6f83f827e6ecf8337d5f0666eaf9df2f850ffba816fc
     name: rehive-service
     urls:
     - https://rehive.github.io/charts/rehive-service-0.1.0.tgz
     version: 0.1.0
-generated: 2018-01-11T18:06:59.510962953+02:00
+generated: 2018-01-11T20:17:11.375815548+02:00

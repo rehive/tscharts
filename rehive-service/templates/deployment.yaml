@@ -29,7 +29,7 @@ spec:
           - secretRef:
               name: {{ template "fullname" . }}
         env:
-        {{- if .Values.postgres.enable }}
+        {{- if .Values.postgres.enabled }}
           - name: POSTGRES_HOST
             value: {{ .Values.postgres.host}}
           - name: POSTGRES_PORT
@@ -42,7 +42,7 @@ spec:
                   name: {{ .Values.postgres.secret.name}}
                   key: {{ .Values.postgres.secret.key}}
         {{- end }}
-        {{- if .Values.redis.enable }}
+        {{- if .Values.redis.enabled }}
           - name: REDIS_HOST
             value: {{ .Values.redis.host}}
           - name: REDIS_PORT
@@ -53,7 +53,7 @@ spec:
                   name: {{ .Values.redis.secret.name}}
                   key: {{ .Values.redis.secret.key}}
         {{- end }}
-        {{- if .Values.rabbitmq.enable }}
+        {{- if .Values.rabbitmq.enabled }}
           - name: RABBITMQ_HOST
             value: {{ .Values.rabbitmq.host}}
           - name: RABBITMQ_PORT
