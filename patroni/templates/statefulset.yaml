@@ -54,7 +54,7 @@ spec:
                     cluster: {{ template "patroni.fullname" . }}
                   scope_label: cluster
                 postgresql:               
-  {{ toYaml .Values.postgresParameters | indent 18 }}
+{{ toYaml .Values.postgresParameters | indent 18 }}
             - name: SCOPE
               value: {{ template "patroni.fullname" . }}
             - name: PGPASSWORD_SUPERUSER
@@ -127,7 +127,7 @@ spec:
               name: postgresql
               protocol: TCP
           resources:
- {{ toYaml .Values.resources | indent 12 }}           
+{{ toYaml .Values.resources | indent 12 }}           
           volumeMounts:
             - name: datadir
               mountPath: /home/postgres/pgdata
@@ -171,7 +171,7 @@ spec:
                     app: "{{ template "patroni.name" . }}"
                     release: "{{ .Release.Name }}"
     {{- end }}
-{{- if .Values.persistentVolume.enabled }}
+{{ if .Values.persistentVolume.enabled }}
   volumeClaimTemplates:
     - metadata:
         name: datadir
