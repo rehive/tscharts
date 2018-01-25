@@ -3,13 +3,7 @@
 # Declare variables to be passed into your templates.
 deployment:
   replicaCount: 3
-  resources:
-    requests:
-      memory: 512Mi
-      cpu: 500m
-    limits:
-      memory: 512Mi
-      cpu: 500m
+  resources: {}
 image:
   repository: rehive/example
   tag: 0.001
@@ -60,9 +54,4 @@ workers:
     internalPort: 8000
     replicaCount: 1
     command: 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example'
-    requests:
-      memory: 256Mi
-      cpu: 100m
-    limits:
-      memory: 256Mi
-      cpu: 100m
+    requests: {}
