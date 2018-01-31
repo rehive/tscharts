@@ -41,6 +41,7 @@ postgresParameters:
 
 walE:
   enable: false
+  envDir: /home/postgres/etc/wal-e.d/env
   scheduleCronJob: 00 01 * * *
   retainBackups: 2
   s3Bucket:
@@ -51,7 +52,7 @@ walE:
 
 cloneWithWale:
   enable: false
-  cloneWaleEnvDir: /home/postgres/wal.e/env
+  cloneWaleEnvDir: /home/postgres/etc/wal-e-clone.d/env
   cloneWalGcsBucket:
   cloneScope:
 

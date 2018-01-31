@@ -77,6 +77,10 @@ spec:
         {{ if .Values.walE.enable }}
             - name: USE_WALE
               value: {{ .Values.walE.enable | quote }}
+          {{ if .Values.walE.envDir }}
+            - name: WALE_ENV_DIR
+              value: {{ .Values.walE.envDir | quote }}
+          {{ end }}
           {{ if .Values.walE.scheduleCronJob }}
             - name: BACKUP_SCHEDULE
               value: {{ .Values.walE.scheduleCronJob | quote }}
