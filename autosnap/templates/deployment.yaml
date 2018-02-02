@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backup
-          image: rehive/autosnap
+          image: .Values.image
           env:
             - name: PROJECT
               value: {{ .Values.project }}
@@ -23,6 +23,8 @@ spec:
               value: {{ .Values.disk }}
             - name: ZONE
               value: {{ .Values.zone }}
+            - name: SNAPSHOT_NAME
+              value: {{ .Values.snapshotName }}
             - name: INTERVAL_MINUTES
               value: "{{ .Values.interval }}"
           command: ['/bin/bash','-c','python app.py']
