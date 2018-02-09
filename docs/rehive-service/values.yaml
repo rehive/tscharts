@@ -13,6 +13,8 @@ service:
   type: ClusterIP
   externalPort: 80
   internalPort: 8000
+  readinessProbe: {}
+  livenessProbe: {}
 ingress:
   enabled: true
   hosts:
