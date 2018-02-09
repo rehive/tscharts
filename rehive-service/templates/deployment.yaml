@@ -64,7 +64,7 @@ spec:
         {{- if .Values.envFromSecret.enabled }}
         envFrom:
           - secretRef:
-              name: {{ .Values.envFromSecret.secretName | default (template "fullname" . ) }}
+              name: {{ .Values.envFromSecret.secretName | default (include "fullname" .) }}
         {{- end }}
         livenessProbe:
 {{ toYaml .Values.service.livenessProbe | indent 10 }}
@@ -126,7 +126,7 @@ spec:
     {{- if .Values.envFromSecret.enabled }}
     envFrom:
       - secretRef:
-          name: {{ .Values.envFromSecret.secretName | default (template "fullname" . ) }}
+          name: {{ .Values.envFromSecret.secretName | default (include "fullname" .) }}
     {{- end }}
     resources:
       requests:
