@@ -61,9 +61,11 @@ spec:
                 name: "{{ .Values.rabbitmq.secret.name}}"
                 key: "{{ .Values.rabbitmq.secret.key}}"
         {{- end }}
+        {{- if .Values.envFromSecret.enabled }}
         envFrom:
           - secretRef:
-              name: {{ template "fullname" . }}
+              name: {{ .Values.envFromSecret.secretName | default (template "fullname" . ) }}
+        {{- end }}
         livenessProbe:
 {{ toYaml .Values.service.livenessProbe | indent 10 }}
         readinessProbe:
@@ -121,9 +123,11 @@ spec:
             name: "{{ .Values.rabbitmq.secret.name}}"
             key: "{{ .Values.rabbitmq.secret.key}}"
     {{- end }}
+    {{- if .Values.envFromSecret.enabled }}
     envFrom:
       - secretRef:
-          name: {{ template "fullname" . }}
+          name: {{ .Values.envFromSecret.secretName | default (template "fullname" . ) }}
+    {{- end }}
     resources:
       requests:
         memory: 1G
