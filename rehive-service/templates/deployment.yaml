@@ -67,7 +67,7 @@ spec:
         livenessProbe:
 {{ toYaml .Values.service.livenessProbe | indent 10 }}
         readinessProbe:
-{{ toYaml .Values.deployment.readinessProbe | indent 10 }}
+{{ toYaml .Values.service.readinessProbe | indent 10 }}
         resources:
 {{ toYaml .Values.deployment.resources | indent 10 }}
 ---
