@@ -72,8 +72,8 @@ spec:
 {{- end }}
 {{- if .Values.service.readinessProbe }}
         readinessProbe:
-{{- end}}
 {{ toYaml .Values.service.readinessProbe | indent 10 }}
+{{- end}}
         resources:
 {{ toYaml .Values.deployment.resources | indent 10 }}
 ---
