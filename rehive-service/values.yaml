@@ -13,8 +13,8 @@ service:
   type: ClusterIP
   externalPort: 80
   internalPort: 8000
-  readinessProbe: {}
-  livenessProbe: {}
+  readinessProbe:
+  livenessProbe:
 envFromSecret:
   enabled: true
 management:
