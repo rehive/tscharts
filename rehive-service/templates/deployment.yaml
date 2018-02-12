@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
-        command: ['/bin/sh','-c', 'gunicorn config.wsgi:application --config file:config/gunicorn.py']
+        command: {{ .Values.deployment.command }}
         env:
         {{- if .Values.postgres.enabled }}
           - name: POSTGRES_HOST
