@@ -17,6 +17,8 @@ service:
   livenessProbe: {}
 envFromSecret:
   enabled: true
+management:
+  enabled: true
 ingress:
   enabled: true
   hosts:

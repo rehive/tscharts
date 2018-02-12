@@ -73,6 +73,7 @@ spec:
         resources:
 {{ toYaml .Values.deployment.resources | indent 10 }}
 ---
+{{- if .Values.management.enabled }}
 apiVersion: v1
 kind: Pod
 metadata:
@@ -135,3 +136,4 @@ spec:
       limits:
         memory: 1G
         cpu: 266m
+{{- end }}
