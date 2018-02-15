@@ -33,7 +33,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: {{ $worker.internalPort }}
-        command: ['/bin/sh','-c', '{{ $worker.command }}']
+        command: {{ $worker.command }}
         env:
         {{- if $postgres.enabled }}
           - name: POSTGRES_HOST

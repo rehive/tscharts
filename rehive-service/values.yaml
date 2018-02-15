@@ -60,5 +60,5 @@ workers:
   - name: worker-receive
     internalPort: 8000
     replicaCount: 1
-    command: 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example'
+    command: ['/bin/sh','-c', 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example']
     requests: {}
