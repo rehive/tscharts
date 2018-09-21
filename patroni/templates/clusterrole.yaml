@@ -1,0 +1,15 @@
+{{- if .Values.rbac.create }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app: {{ template "patroni.name" . }}
+    chart: {{ template "patroni.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+  name: {{ template "patroni.fullname" . }}-clusterrole
+rules:
+- apiGroups: ["*"] # "" indicates the core API group
+  resources: ["/api/v1/namespaces/kube-system/secrets/gcloud-wale"]
+  verbs: ["get", "watch", "list"]
+{{- end}}

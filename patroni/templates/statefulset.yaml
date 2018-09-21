@@ -20,6 +20,10 @@ spec:
         application: {{ template "patroni.name" . }}
         cluster: {{ template "patroni.fullname" . }}
     spec:
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: patroni-service-account
+      automountServiceAccountToken: true
+      {{- end}}
       containers:
         - name: spilo
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
@@ -53,7 +57,7 @@ spec:
                     application: {{ template "patroni.name" . }}
                     cluster: {{ template "patroni.fullname" . }}
                   scope_label: cluster
-                postgresql:               
+                postgresql:
 {{ toYaml .Values.postgresParameters | indent 18 }}
             - name: SCOPE
               value: {{ template "patroni.fullname" . }}
@@ -95,7 +99,7 @@ spec:
           {{ else if .Values.walE.gcsBucket }}
             - name: WAL_GCS_BUCKET
               value: {{ .Values.walE.gcsBucket | quote }}
-            {{ if .Values.walE.kubernetesSecret }}
+            {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: "/etc/credentials/{{ .Values.walE.kubernetesSecret }}.json"
             {{ end }}
@@ -104,7 +108,7 @@ spec:
             - name: WALE_BACKUP_THRESHOLD_MEGABYTES
               value: {{ .Values.walE.backupThresholdMegabytes | quote }}
           {{ end }}
-          {{ if .Values.walE.backupThresholdPercentage }}
+          {{if .Values.walE.backupThresholdPercentage }}
             - name: WALE_BACKUP_THRESHOLD_PERCENTAGE
               value: {{ .Values.walE.backupThresholdPercentage | quote }}
           {{ end }}
@@ -131,17 +135,15 @@ spec:
               name: postgresql
               protocol: TCP
           resources:
-{{ toYaml .Values.resources | indent 12 }}           
+{{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
             - name: datadir
               mountPath: /home/postgres/pgdata
-          {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
+      {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
             - name: {{ .Values.walE.kubernetesSecret }}
               mountPath: /etc/credentials
               readOnly: true
-        {{ end }}
       volumes:
-      {{ if and .Values.walE.enable .Values.walE.kubernetesSecret }}
         - name: {{ .Values.walE.kubernetesSecret }}
           secret:
             secretName: {{ .Values.walE.kubernetesSecret }}

@@ -9,6 +9,15 @@ debug: false
 
 podAntiAffinity: soft
 
+rbac:
+  apiVersion: v1beta1
+  rbac: roleRef
+  create: true
+
+serviceAccount:
+  create: true
+  name: patroni-service-account
+
 nodeSelector: {}
 #  cloud.google.com/gke-nodepool: postgres-pool
 
@@ -46,7 +55,7 @@ walE:
   retainBackups: 2
   s3Bucket:
   kubernetesSecret:
-  gcsBucket: 
+  gcsBucket:
   backupThresholdMegabytes: 1024
   backupThresholdPercentage: 30
 
