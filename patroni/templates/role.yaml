@@ -10,6 +10,19 @@ metadata:
     heritage: {{ .Release.Service }}
 rules:
   - apiGroups: [""]
-    resources: ["endpoints", "pods"]
-    verbs: ["list", "patch", "watch"]
+    resources:
+      - pods
+      - configmaps
+    verbs:
+      - list
+      - patch
+      - watch
+  - apiGroups: [""]
+    resources:
+      - endpoints
+    verbs:
+      - create
+      - list
+      - watch
+      - patch
 {{- end }}

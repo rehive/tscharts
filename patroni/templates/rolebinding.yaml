@@ -11,6 +11,8 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: {{ template "patroni.serviceAccountName" . }}
+  - kind: User
+    name: system:serviceaccount:{{ .Release.Namespace }}:default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
