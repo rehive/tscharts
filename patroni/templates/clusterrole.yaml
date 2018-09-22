@@ -7,9 +7,15 @@ metadata:
     chart: {{ template "patroni.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-  name: {{ template "patroni.fullname" . }}-clusterrole
+  name: {{ template "patroni.fullname" . }}-gcloud-clusterrole
 rules:
-- apiGroups: ["*"] # "" indicates the core API group
-  resources: ["/api/v1/namespaces/kube-system/secrets/gcloud-wale"]
-  verbs: ["get", "watch", "list"]
-{{- end}}
+- apiGroups: [""] # "" indicates the core API group
+  resources:
+    - secrets
+  resourceNames:
+    - /api/v1/namespaces/kube-public/secrets/gcloud-wale
+  verbs:
+    - get
+    - watch
+    - list
+{{- end }}
