@@ -4,7 +4,7 @@ Patroni can be accessed via port 5432 on the following DNS name from within your
 
 Get the password for superuser:
 
-    kubectl get secret --namespace {{ .Release.Namespace }} {{ template "patroni.fullname" . }} -o jsonpath="{.data.password-superuser}" | base64 --decode | echo
+    kubectl get secret --namespace {{ .Release.Namespace }} {{ template "patroni.fullname" . }} -o jsonpath="{.data.password-superuser}" | base64 --decode
 
 To connect to your database:
 

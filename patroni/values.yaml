@@ -1,6 +1,6 @@
 image:
-  repository: registry.opensource.zalan.do/acid/spilo-10
-  tag: 1.3-p9
+  repository: kidynamit/spilo
+  tag: 1.4
   pullPolicy: Always
 
 # How many postgres containers to spawn
@@ -27,6 +27,12 @@ resources: {}
 #  requests:
 #     cpu: 2
 #     memory: 7.5Gi
+
+# DCS custom config
+dcs:
+  ttl: 50 # loop_wait + (retry_timeout * 2)
+  loop_wait: 10
+  retry_timeout: 20
 
 credentials:
   # Leave blank to autogenerate

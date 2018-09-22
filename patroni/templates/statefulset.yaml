@@ -4,7 +4,7 @@ metadata:
   name: {{ template "patroni.fullname" . }}
   labels:
     app: {{ template "patroni.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    chart: {{ template "patroni.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
     application: {{ template "patroni.name" . }}
@@ -21,8 +21,8 @@ spec:
         cluster: {{ template "patroni.fullname" . }}
     spec:
       containers:
-        - name: spilo
-          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: DEBUG
@@ -38,6 +38,18 @@ spec:
                   fieldPath: metadata.namespace
             - name: DCS_ENABLE_KUBERNETES_API
               value: "true"
+          {{- if .Values.dcs.ttl }}
+            - name: DCS_TTL
+              value: {{ .Values.dcs.ttl | quote }}
+          {{- end}}
+          {{- if .Values.dcs.retry_timeout }}
+            - name: DCS_RETRY_TIMEOUT
+              value: {{ .Values.dcs.retry_timeout | quote }}
+          {{- end}}
+          {{- if .Values.dcs.loop_wait }}
+            - name: DCS_LOOP_WAIT
+              value: {{ .Values.dcs.loop_wait | quote }}
+          {{- end}}
             - name: USE_KUBERNETES
               value: "true"
           {{- if .Values.useConfigMaps }}
