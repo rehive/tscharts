@@ -1,0 +1,97 @@
+apiVersion: apps/v1beta1
+kind: StatefulSet
+metadata:
+  name: {{ template "bitcoin-core.fullname" . }}
+  labels:
+    app: {{ template "bitcoin-core.name" . }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    application: {{ template "bitcoin-core.name" . }}
+    cluster: {{ template "bitcoin-core.fullname" . }}
+spec:
+  serviceName: {{ template "bitcoin-core.fullname" . }}
+  replicas: {{ .Values.replicas }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "bitcoin-core.name" . }}
+        release: {{ .Release.Name }}
+        application: {{ template "bitcoin-core.name" . }}
+        cluster: {{ template "bitcoin-core.fullname" . }}
+    spec:
+      containers:
+        - name: bitcoin-core
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: {{ $Values.command }}
+          ports:
+            - name: rpc
+              containerPort: {{ .Values.service.rpcPort }}
+            - name: p2p
+              containerPort: {{ .Values.service.p2pPort }}
+            - name: testnet
+              containerPort: {{ .Values.service.testnetPort }}
+            - name: testnet-p2p
+              containerPort: {{ .Values.service.testnetP2pPort }}
+          resources:
+{{ toYaml .Values.resources | indent 12 }}           
+          volumeMounts:
+            - name: datadir
+              mountPath: /home/bitcoin/.bitcoin
+    {{- if .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml .Values.nodeSelector | indent 8 }}
+    {{- end }}
+    {{- if .Values.tolerations }}
+      tolerations:
+{{ toYaml .Values.tolerations | indent 8 }}
+    {{ end }}
+    {{- if eq .Values.podAntiAffinity "hard" }}
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - topologyKey: "kubernetes.io/hostname"
+              labelSelector:
+                matchLabels:
+                  app: "{{ template "bitcoin-core.name" . }}"
+                  release: "{{ .Release.Name }}"
+    {{- else if eq .Values.podAntiAffinity "soft" }}
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              podAffinityTerm:
+                topologyKey: kubernetes.io/hostname
+                labelSelector:
+                  matchLabels:
+                    app: "{{ template "bitcoin-core.name" . }}"
+                    release: "{{ .Release.Name }}"
+    {{- end }}
+{{ if .Values.persistentVolume.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: datadir
+      {{- if .Values.persistentVolume.annotations }}
+        annotations:
+      {{ toYaml .Values.persistentVolume.annotations | indent 10 }}
+      {{- end }}
+      spec:
+        accessModes:
+        {{- range .Values.persistentVolume.accessModes }}
+          - {{ . | quote }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistentVolume.size | quote }}
+    {{- if .Values.persistentVolume.storageClass }}
+      {{- if (eq "-" .Values.persistentVolume.storageClass) }}
+        storageClassName: ""
+      {{- else }}
+        storageClassName: "{{ .Values.persistentVolume.storageClass }}"
+      {{- end }}
+    {{- end }}
+{{- else }}
+        - name: datadir
+          emptyDir: {}
+{{- end }}

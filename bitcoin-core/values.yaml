@@ -1,0 +1,56 @@
+image:
+  repository: ruimarinho/bitcoin-core
+  tag: 0.17.0
+  pullPolicy: Always
+
+command:
+  -printtoconsole
+  -testnet=1
+  -rpcallowip=0.0.0.0/0
+
+# How many postgres containers to spawn
+replicas: 1
+debug: false
+
+podAntiAffinity: soft
+
+nodeSelector: {}
+  cloud.google.com/gke-nodepool: bitcoin-core-pool
+
+tolerations: {}
+  - key: "dedicated"
+    operator: "Equal"
+    value: "bitcoin-coree"
+    effect: "NoSchedule"
+
+
+# Resource requests and limits per pod
+resources: {}
+#  limits:
+#     cpu: 2
+#     memory: 7.5Gi
+#  requests:
+#     cpu: 2
+#     memory: 7.5Gi
+
+
+persistentVolume:
+  enabled: true
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  storageClass: "ssd"
+  accessModes:
+    - ReadWriteOnce
+  size: 500Gi
+  annotations: {}
+
+service:
+  rpcPort: 8332
+  p2pPort: 8333
+  testnetPort: 18332
+  testnetP2pPort: 18333

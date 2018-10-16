@@ -1,0 +1,8 @@
+name: bicoin-core
+description: 'Bitcoin Core Stateful Set'
+version: 0.0.1
+appVersion: 0.17.0
+home: https://github.com/rehive/charts
+maintainers:
+- name: michailbrynard
+  email: info@rehive.com  
