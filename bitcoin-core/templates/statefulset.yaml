@@ -11,7 +11,7 @@ metadata:
     cluster: {{ template "bitcoin-core.fullname" . }}
 spec:
   serviceName: {{ template "bitcoin-core.fullname" . }}
-  replicas: {{ .Values.replicas }}
+  replicas: {{ .Values.replicas }}  
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ spec:
         - name: bitcoin-core
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: {{ $Values.command }}
+          command: {{ .Values.command }}
           ports:
             - name: rpc
               containerPort: {{ .Values.service.rpcPort }}
@@ -39,6 +39,17 @@ spec:
           volumeMounts:
             - name: datadir
               mountPath: /home/bitcoin/.bitcoin
+            {{- if .Values.walletNotify.enabled }}
+            - name: config
+              mountPath: /bitcoin/.bitcoin/walletnotify.py
+              subPath: walletnotify.py
+            {{- end }}
+      volumes:
+        {{- if .Values.walletNotify.enabled }}
+        - name: {{ .Values.walletNotify.kubernetesSecret }}
+          configMap:
+            name: {{ .Values.walletNotify.kubernetesConfigMap }}
+        {{- end }}
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}

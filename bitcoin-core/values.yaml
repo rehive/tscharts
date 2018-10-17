@@ -3,24 +3,24 @@ image:
   tag: 0.17.0
   pullPolicy: Always
 
-command:
-  -printtoconsole
-  -testnet=1
-  -rpcallowip=0.0.0.0/0
+command: "['/entrypoint.sh', '-printtoconsole', '-testnet=1' , '-rpcallowip=0.0.0.0/0']"
 
-# How many postgres containers to spawn
+walletNotify:
+  enabled: false
+
+# How many postgres containers to spawn   
 replicas: 1
 debug: false
 
 podAntiAffinity: soft
 
-nodeSelector: {}
+nodeSelector:
   cloud.google.com/gke-nodepool: bitcoin-core-pool
 
-tolerations: {}
+tolerations:
   - key: "dedicated"
     operator: "Equal"
-    value: "bitcoin-coree"
+    value: "bitcoin-core"
     effect: "NoSchedule"
 
 
