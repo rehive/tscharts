@@ -9,7 +9,7 @@ command:
   - -testnet=1
   - -rpcallowip=0.0.0.0/0
   - -rpcuser=foo
-  - -rpcpassword=qDDZdeQ5vw9XXFeVnXT4PZ--tGN2xNjjR4nrtyszZx0="
+  - -rpcpassword=qDDZdeQ5vw9XXFeVnXT4PZ--tGN2xNjjR4nrtyszZx0=
   - -walletnotify='python3 /walletnotify.py %s'
 
 envFromSecret:
