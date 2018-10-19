@@ -24,7 +24,8 @@ spec:
         - name: bitcoin-core
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          command: {{ .Values.command }}
+          command:
+{{ toYaml .Values.command | indent 12 }}     
           ports:
             - name: rpc
               containerPort: {{ .Values.service.rpcPort }}

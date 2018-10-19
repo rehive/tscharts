@@ -10,7 +10,7 @@ metadata:
     application: {{ template "bitcoin-core.name" . }}
     cluster: {{ template "bitcoin-core.fullname" . }}
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
     - name: rpc
       port: {{ .Values.service.rpcPort }}
@@ -22,3 +22,6 @@ spec:
       port: {{ .Values.service.testnetPort }}
     - name: testnet-p2p
       port: {{ .Values.service.testnetP2pPort }}
+  externalTrafficPolicy: Local
+  selector:
+    app: {{ template "bitcoin-core.name" . }}
