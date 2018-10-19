@@ -1,4 +1,4 @@
-name: bicoin-core
+name: bitcoin-core
 description: 'Bitcoin Core Stateful Set'
 version: 0.0.1
 appVersion: 0.17.0
