@@ -34,22 +34,16 @@ spec:
               containerPort: {{ .Values.service.testnetPort }}
             - name: testnet-p2p
               containerPort: {{ .Values.service.testnetP2pPort }}
+          {{- if .Values.envFromSecret.enabled }}           
+          envFrom:
+            - secretRef:
+                name: {{ .Values.envFromSecret.secretName | default (include "bitcoin-core.fullname" .) }}
+          {{- end }}
           resources:
 {{ toYaml .Values.resources | indent 12 }}           
           volumeMounts:
             - name: datadir
               mountPath: /home/bitcoin/.bitcoin
-            {{- if .Values.walletNotify.enabled }}
-            - name: config
-              mountPath: /bitcoin/.bitcoin/walletnotify.py
-              subPath: walletnotify.py
-            {{- end }}
-      volumes:
-        {{- if .Values.walletNotify.enabled }}
-        - name: {{ .Values.walletNotify.kubernetesSecret }}
-          configMap:
-            name: {{ .Values.walletNotify.kubernetesConfigMap }}
-        {{- end }}
     {{- if .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.nodeSelector | indent 8 }}
