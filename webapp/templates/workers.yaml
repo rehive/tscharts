@@ -1,6 +1,7 @@
 {{- $replicaCount := .Values.deployment.replicaCount -}}
 {{- $repository := .Values.image.repository -}}
 {{- $env := .Values.env -}}
+{{- $envFrom := .Values.envFrom -}}
 {{- $tag := .Values.image.tag -}}
 {{- $serviceName := include "fullname" . -}}
 {{- $revision := .Release.Revision -}}
@@ -34,6 +35,8 @@ spec:
         command: {{ $worker.command }}
         env:
 {{ toYaml $env | indent 10 }}
+        envFrom:
+{{ toYaml $envFrom | indent 10 }}
         resources:
 {{ toYaml $worker.resources | indent 10 }}
 ---

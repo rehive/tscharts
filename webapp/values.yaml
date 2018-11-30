@@ -17,6 +17,7 @@ service:
   readinessProbe:
   livenessProbe:
 env: {}
+envFrom: {}
 ingress:
   enabled: true
   hosts:
