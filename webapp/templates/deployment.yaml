@@ -26,9 +26,9 @@ spec:
         - containerPort: {{ .Values.service.internalPort }}
         command: {{ .Values.deployment.command }}
         env:
-{{ toYaml .Values.deployment.env | indent 10 }}
+{{ toYaml .Values.env | indent 10 }}
         envFrom:
-{{ toYaml .Values.deployment.envFrom | indent 10 }}
+{{ toYaml .Values.envFrom | indent 10 }}
 {{- if .Values.service.livenessProbe }}
         livenessProbe:
 {{ toYaml .Values.service.livenessProbe | indent 10 }}
@@ -56,9 +56,9 @@ spec:
     imagePullPolicy: {{ .Values.image.pullPolicy }}
     command: ['/bin/sh','-c', 'python manage.py runserver'] # Hack to create long-running pod
     env:
-{{ toYaml .Values.deployment.env | indent 10 }}
+{{ toYaml .Values.env | indent 10 }}
     envFrom:
-{{ toYaml .Values.deployment.envFrom | indent 10 }}
+{{ toYaml .Values.envFrom | indent 10 }}
     resources:
 {{ toYaml .Values.deployment.management.resources | indent 10 }}
 {{- end }}
