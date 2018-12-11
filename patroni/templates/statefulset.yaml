@@ -12,6 +12,8 @@ metadata:
 spec:
   serviceName: {{ template "patroni.fullname" . }}
   replicas: {{ .Values.replicas }}
+  updateStrategy:
+    type: RollingUpdate
   template:
     metadata:
       labels:
@@ -55,6 +57,8 @@ spec:
                   scope_label: cluster
                 postgresql:               
 {{ toYaml .Values.postgresParameters | indent 18 }}
+                bootstrap:               
+{{ toYaml .Values.bootstrapParameters | indent 18 }}
             - name: SCOPE
               value: {{ template "patroni.fullname" . }}
             - name: PGPASSWORD_SUPERUSER
