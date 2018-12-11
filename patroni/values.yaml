@@ -28,7 +28,7 @@ resources: {}
 #     cpu: 2
 #     memory: 7.5Gi
 
-useConfigMaps: true
+useConfigMaps: false
 
 postgresParameters:
   bin_dir: /usr/lib/postgresql/9.6/bin
