@@ -28,7 +28,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: DEBUG
-              value: .Values.debug
+              value: {{ .Values.debug | quote }}
             - name: POD_IP
               valueFrom:
                 fieldRef:
