@@ -4,15 +4,13 @@ metadata:
   name: {{ template "patroni.fullname" . }}
   labels:
     app: {{ template "patroni.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    chart: {{ template "patroni.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    application: {{ template "patroni.name" . }}
-    cluster: {{ template "patroni.fullname" . }}
 spec:
   type: ClusterIP
   ports:
-    - port: 5432
-      targetPort: postgresql
-      name: postgresql
-      protocol: TCP
+  - name: postgresql
+    port: 5432
+    targetPort: postgresql
+    protocol: TCP
