@@ -86,3 +86,10 @@ cleanup:
     repository: quay.io/coreos/hyperkube
     tag: v1.8.4_coreos.0
     pullPolicy: IfNotPresent
+
+## Create RBAC policy for patroni
+rbac:
+  create: true
+# Create ServiceAccount for patroni
+serviceAccount:
+  create: true
