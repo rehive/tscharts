@@ -15,4 +15,10 @@ rules:
       - pods
     verbs:
       - patch
+      - list
+  - apiGroups: [""]
+    resources:
+      - endpoints
+    verbs:
+      - create
 {{- end }}

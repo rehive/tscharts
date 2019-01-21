@@ -1,27 +1,28 @@
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ template "patroni.fullname" . }}
   labels:
     app: {{ template "patroni.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    chart: {{ template "patroni.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    application: {{ template "patroni.name" . }}
-    cluster: {{ template "patroni.fullname" . }}
 spec:
   serviceName: {{ template "patroni.fullname" . }}
   replicas: {{ .Values.replicas }}
   updateStrategy:
     type: RollingUpdate
+  selector:
+    matchLabels:
+      app: {{ template "patroni.name" . }}
+      release: {{ .Release.Name }}
   template:
     metadata:
       labels:
         app: {{ template "patroni.name" . }}
         release: {{ .Release.Name }}
-        application: {{ template "patroni.name" . }}
-        cluster: {{ template "patroni.fullname" . }}
     spec:
+      serviceAccountName: {{ template "patroni.serviceAccountName" . }}
       containers:
         - name: spilo
           image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
@@ -55,9 +56,9 @@ spec:
                     application: {{ template "patroni.name" . }}
                     cluster: {{ template "patroni.fullname" . }}
                   scope_label: cluster
-                postgresql:               
+                postgresql:
 {{ toYaml .Values.postgresParameters | indent 18 }}
-                bootstrap:               
+                bootstrap:
 {{ toYaml .Values.bootstrapParameters | indent 18 }}
             - name: SCOPE
               value: {{ template "patroni.fullname" . }}
@@ -135,7 +136,7 @@ spec:
               name: postgresql
               protocol: TCP
           resources:
-{{ toYaml .Values.resources | indent 12 }}           
+{{ toYaml .Values.resources | indent 12 }}
           volumeMounts:
             - name: datadir
               mountPath: /home/postgres/pgdata
