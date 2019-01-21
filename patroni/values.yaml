@@ -93,3 +93,4 @@ rbac:
 # Create ServiceAccount for patroni
 serviceAccount:
   create: true
+  name: "patroni-service-account"
