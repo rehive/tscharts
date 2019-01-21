@@ -28,16 +28,27 @@ resources: {}
 #     cpu: 2
 #     memory: 7.5Gi
 
-credentials:
-  # Leave blank to autogenerate
-  superuser:
-  admin:
-  standby:
-
 useConfigMaps: false
 
 postgresParameters:
   bin_dir: /usr/lib/postgresql/9.6/bin
+  # pg_hba:
+  #   - local   all             all                                   trust
+  #   - hostssl all             +zalandos    127.0.0.1/32       pam
+  #   - host    all             all                127.0.0.1/32       md5
+  #   - hostssl all             +zalandos    ::1/128            pam
+  #   - host    all             all                ::1/128            md5
+  #   - hostssl replication     standby all                md5
+  #   - hostnossl all           all                all                reject
+  #   - hostssl all             +zalandos    all                pam
+  #   - hostssl all             all                all                md5
+
+# To modify the bootstrap parameters
+bootstrapParameters:
+  dcs:
+    ttl: 70
+    loop_wait: 10
+    retry_timeout: 30
 
 walE:
   enable: false
@@ -46,7 +57,7 @@ walE:
   retainBackups: 2
   s3Bucket:
   kubernetesSecret:
-  gcsBucket: 
+  gcsBucket: # the bucket name created with rdeploy create_bucket
   backupThresholdMegabytes: 1024
   backupThresholdPercentage: 30
 
@@ -75,3 +86,11 @@ cleanup:
     repository: quay.io/coreos/hyperkube
     tag: v1.8.4_coreos.0
     pullPolicy: IfNotPresent
+
+## Create RBAC policy for patroni
+rbac:
+  create: true
+# Create ServiceAccount for patroni
+serviceAccount:
+  create: true
+  name:

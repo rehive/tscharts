@@ -4,9 +4,7 @@ metadata:
   name: {{ template "patroni.fullname" . }}
   labels:
     app: {{ template "patroni.name" . }}
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    chart: {{ template "patroni.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    application: {{ template "patroni.name" . }}
-    cluster: {{ template "patroni.fullname" . }}
 subsets: []
