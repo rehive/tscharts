@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "fullname" . }}
@@ -134,10 +134,14 @@ spec:
           name: {{ .Values.envFromSecret.secretName | default (include "fullname" .) }}
     {{- end }}
     resources:
+      {{- if .Values.management.resources }}
+{{ toYaml .Values.management.resources | indent 6 }}
+      {{- else}}
       requests:
         memory: 1G
         cpu: 266m
       limits:
         memory: 1G
         cpu: 266m
+      {{- end }}
 {{- end }}

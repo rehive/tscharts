@@ -9,7 +9,7 @@
 
 {{- if .Values.workersEnabled -}}
 {{- range $worker := .Values.workers }}
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ $worker.name }}
